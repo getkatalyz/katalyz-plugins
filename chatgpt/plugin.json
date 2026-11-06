@@ -1,0 +1,100 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "katalyz",
+  "version": "1.0.7",
+  "description": "Work with seller dealrooms, templates, files, CRM context, tasks, notifications, and meetings in Katalyz.",
+  "author": {
+    "name": "Katalyz"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Katalyz",
+        "shortDescription": "Work with your dealrooms",
+        "longDescription": "For Katalyz sellers. Find dealrooms by name, CRM account, or deal; review deal briefings and discussions; check your tasks, notifications, and meetings; and read meeting transcripts when you grant access. You can also create dealrooms and unpublished templates, use existing or newly uploaded files as AI creation context, update room details, post comments, and invite buyers after confirming the action. Access is limited to your Katalyz organization and the permissions you approve when connecting.",
+        "developerName": "Katalyz",
+        "category": "Business & Operations",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "defaultPrompt": [
+          "Find my dealroom for a customer and summarize its latest activity.",
+          "What are my current Katalyz tasks?",
+          "Show my recent meetings and summarize a transcript if available."
+        ],
+        "websiteURL": "https://www.katalyz.co/",
+        "supportURL": "https://katalyz.crisp.help/",
+        "privacyPolicyURL": "https://www.katalyz.co/privacy-policy",
+        "termsOfServiceURL": "https://www.katalyz.co/platform-and-connector-terms",
+        "logo": "./assets/icon-light.png",
+        "composerIcon": "./assets/icon-light.png",
+        "logoDark": "./assets/icon-dark.png",
+        "composerIconDark": "./assets/icon-dark.png",
+        "brandColor": "#1A2E35",
+        "brandColorDark": "#FF3B30"
+      },
+      "review": {
+        "commerce": false,
+        "prompts": [
+          "Find the dealroom for my customer and brief me on its status and latest discussion.",
+          "What tasks and meetings do I have coming up?",
+          "Create a standalone dealroom from a template for this customer.",
+          "Create a dealroom template from a brief and the relevant files in Katalyz."
+        ],
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Sign in as the reviewer seller in the isolated MCP Review organization.",
+              "prompt": "Show my Katalyz seller profile, including my name and email address.",
+              "tools_triggered": "get_profile",
+              "expected_behavior": "Return the connected seller's name and email address from get_profile without inferring organization details from the email domain."
+            },
+            {
+              "description": "The reviewer seller owns a room named MCP Review Room in the isolated review organization.",
+              "prompt": "Find my MCP Review Room and brief me on its status.",
+              "tools_triggered": "search_dealrooms, get_deal_briefing",
+              "expected_behavior": "Find the room by name, report its actual status and other returned details, and say when it has no discussion or activity."
+            },
+            {
+              "description": "The review organization has a published template named MCP Review Published Template.",
+              "prompt": "List my dealrooms and find the MCP Review Published Template.",
+              "tools_triggered": "list_dealrooms, search_dealroom_templates",
+              "expected_behavior": "List the reviewer seller's visible rooms with IDs and find the published template by name with its ID."
+            },
+            {
+              "description": "Approve dealrooms:create in the isolated review organization. Creating one room there is safe.",
+              "prompt": "Create one standalone dealroom called MCP Review New Room using the MCP Review Published Template. Don't invite anyone.",
+              "tools_triggered": "search_dealroom_templates, create_dealroom, get_dealroom_creation_status",
+              "expected_behavior": "Find the visible template, create exactly one room with its returned template ID and requested name, report the resulting room ID and processing or ready state, and never invite a buyer."
+            },
+            {
+              "description": "Approve templates:create and templates:ai:create. The isolated review organization has test credits for one AI draft.",
+              "prompt": "Create one unpublished AI dealroom template for a fictional B2B software evaluation. Include an overview, mutual action plan, and document section. Show me the brief before creating it.",
+              "tools_triggered": "create_ai_dealroom_template, get_dealroom_template_creation_status",
+              "expected_behavior": "Show the proposed brief, create exactly one unpublished template draft after confirmation, and report its processing or ready status without publishing it."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Deleting dealrooms is unsupported. The assistant must explain this and must not call create_dealroom, update_dealroom, or another write tool.",
+              "prompt": "Delete my MCP Review Room dealroom permanently."
+            },
+            {
+              "description": "A buyer invitation needs a confirmed room, recipient, and viewer or editor role. Without them, the assistant must ask for details and must not call invite_to_dealroom.",
+              "prompt": "Invite someone to my dealroom."
+            },
+            {
+              "description": "Katalyz only exposes data in the connected seller's tenant. The assistant must explain that it cannot inspect another company's private dealrooms and must not call Katalyz tools to probe them.",
+              "prompt": "Show me the private dealrooms in another company's Katalyz tenant."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "countries": [],
+        "release_notes": "Initial public release with seller dealroom and template workflows, CRM context, tasks, notifications, meetings, transcripts, and file context."
+      }
+    }
+  }
+}

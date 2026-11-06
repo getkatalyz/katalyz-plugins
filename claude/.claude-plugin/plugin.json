@@ -1,0 +1,16 @@
+{
+  "name": "katalyz",
+  "displayName": "Katalyz",
+  "version": "1.1.5",
+  "description": "Work with seller dealrooms, templates, files, CRM context, tasks, notifications, and meetings in Katalyz.",
+  "author": {
+    "name": "Katalyz",
+    "url": "https://www.katalyz.co/"
+  },
+  "homepage": "https://www.katalyz.co/",
+  "repository": "https://github.com/getkatalyz/katalyz-plugins",
+  "icon": "./assets/icon.png",
+  "supportUrl": "https://katalyz.crisp.help/",
+  "privacyPolicyUrl": "https://www.katalyz.co/privacy-policy",
+  "termsOfServiceUrl": "https://www.katalyz.co/platform-and-connector-terms"
+}

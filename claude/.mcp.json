@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "katalyz": {
+      "type": "http",
+      "url": "https://mcp.katalyz.co/mcp"
+    }
+  }
+}

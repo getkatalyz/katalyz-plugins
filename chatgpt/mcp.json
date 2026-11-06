@@ -1,0 +1,49 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "katalyz": {
+      "type": "streamable-http",
+      "url": "https://mcp.katalyz.co/mcp",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "mixed",
+            "client": {
+              "mode": "cimd"
+            },
+            "authorizationUrl": "https://mcp.katalyz.co/oauth/authorize",
+            "tokenUrl": "https://mcp.katalyz.co/oauth/token",
+            "resource": "https://mcp.katalyz.co/mcp",
+            "baseScopes": [
+              "profile:read",
+              "dealrooms:read",
+              "comments:read",
+              "offline_access"
+            ],
+            "defaultScopes": [
+              "profile:read",
+              "dealrooms:read",
+              "comments:read",
+              "offline_access",
+              "comments:write",
+              "tasks:read",
+              "notifications:read",
+              "meetings:read",
+              "meetings:transcript:read",
+              "crm:read",
+              "resources:read",
+              "dealrooms:create",
+              "dealrooms:ai:create",
+              "dealrooms:update",
+              "dealrooms:invite",
+              "crm:write",
+              "templates:create",
+              "templates:ai:create",
+              "resources:upload"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
