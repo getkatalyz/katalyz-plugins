@@ -9,6 +9,7 @@
   },
   "homepage": "https://www.katalyz.co/",
   "repository": "https://github.com/getkatalyz/katalyz-plugins",
+  "documentationUrl": "https://github.com/getkatalyz/katalyz-plugins/blob/main/claude/README.md",
   "icon": "./assets/icon.png",
   "supportUrl": "https://katalyz.crisp.help/",
   "privacyPolicyUrl": "https://www.katalyz.co/privacy-policy",
