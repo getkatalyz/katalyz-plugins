@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "katalyz",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Create and edit seller dealrooms, templates, pages, widgets, files, and tasks in Katalyz.",
   "author": {
     "name": "Katalyz"
@@ -59,20 +59,20 @@
             {
               "description": "The reviewer seller can read the MCP Review Room's pages and design without changing them.",
               "prompt": "Show me the pages and visual design of my MCP Review Room. Do not edit it.",
-              "tools_triggered": "search_dealrooms, get_content_overview, get_content_design",
-              "expected_behavior": "Find the room, report only its returned pages and current design settings, and make no write calls."
+              "tools_triggered": "search_dealrooms, get_content_overview, get_content_design, get_organization_branding",
+              "expected_behavior": "Find the room, report its returned pages, current design, and organization branding, and make no write calls."
             },
             {
               "description": "Approve dealrooms:create in the isolated review organization. Creating one room there is safe.",
               "prompt": "Create one standalone dealroom called MCP Review New Room using the MCP Review Published Template. Don't invite anyone.",
-              "tools_triggered": "search_dealroom_templates, create_dealroom, get_dealroom_creation_status",
-              "expected_behavior": "Find the visible template, create exactly one room with its returned template ID and requested name, report the resulting room ID and processing or ready state, and never invite a buyer."
+              "tools_triggered": "get_organization_branding, search_dealroom_templates, create_dealroom, get_dealroom_creation_status",
+              "expected_behavior": "Read the organization's current branding, find the visible template, create exactly one room with its returned template ID and requested name, report the resulting room ID and processing or ready state, and never invite a buyer."
             },
             {
               "description": "Approve templates:create and templates:ai:create. The isolated review organization has test credits for one AI draft.",
               "prompt": "Create one unpublished AI dealroom template for a fictional B2B software evaluation. Include an overview, mutual action plan, and document section. Show me the brief before creating it.",
-              "tools_triggered": "create_ai_dealroom_template, get_dealroom_template_creation_status",
-              "expected_behavior": "Show the proposed brief, create exactly one unpublished template draft after confirmation, and report its processing or ready status without publishing it."
+              "tools_triggered": "get_organization_branding, create_ai_dealroom_template, get_dealroom_template_creation_status",
+              "expected_behavior": "Read the organization's current branding for the brief, show the proposed brief, create exactly one unpublished template draft after confirmation, and report its processing or ready status without publishing it."
             }
           ],
           "negative": [
@@ -93,7 +93,7 @@
       },
       "publication": {
         "countries": [],
-        "release_notes": "Adds direct dealroom and template page editing, native widgets and tasks, reusable library uploads, resource management, and template renaming. New permissions require reconnection."
+        "release_notes": "Adds organization branding guidance for room and template creation and editing. The new read-only branding tool uses the existing profile permission."
       }
     }
   }
