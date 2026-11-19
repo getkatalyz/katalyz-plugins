@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "katalyz",
-  "version": "1.0.7",
-  "description": "Work with seller dealrooms, templates, files, CRM context, tasks, notifications, and meetings in Katalyz.",
+  "version": "1.1.0",
+  "description": "Create and edit seller dealrooms, templates, pages, widgets, files, and tasks in Katalyz.",
   "author": {
     "name": "Katalyz"
   },
@@ -11,7 +11,7 @@
       "interface": {
         "displayName": "Katalyz",
         "shortDescription": "Work with your dealrooms",
-        "longDescription": "For Katalyz sellers. Find dealrooms by name, CRM account, or deal; review deal briefings and discussions; check your tasks, notifications, and meetings; and read meeting transcripts when you grant access. You can also create dealrooms and unpublished templates, use existing or newly uploaded files as AI creation context, update room details, post comments, and invite buyers after confirming the action. Access is limited to your Katalyz organization and the permissions you approve when connecting.",
+        "longDescription": "For Katalyz sellers. Find and brief dealrooms, review tasks and meetings, and read transcripts when you grant access. Create dealrooms and unpublished templates, edit their pages, widgets, tasks, and design, and use existing or uploaded files as AI context or reusable library assets. You can also update room details, post comments, and invite buyers after confirming the action. Access follows your Katalyz organization, seller permissions, and the OAuth scopes you approve.",
         "developerName": "Katalyz",
         "category": "Business & Operations",
         "capabilities": [
@@ -57,6 +57,12 @@
               "expected_behavior": "Find the room by name, report its actual status and other returned details, and say when it has no discussion or activity."
             },
             {
+              "description": "The reviewer seller can read the MCP Review Room's pages and design without changing them.",
+              "prompt": "Show me the pages and visual design of my MCP Review Room. Do not edit it.",
+              "tools_triggered": "search_dealrooms, get_content_overview, get_content_design",
+              "expected_behavior": "Find the room, report only its returned pages and current design settings, and make no write calls."
+            },
+            {
               "description": "The review organization has a published template named MCP Review Published Template.",
               "prompt": "List my dealrooms and find the MCP Review Published Template.",
               "tools_triggered": "list_dealrooms, search_dealroom_templates",
@@ -93,7 +99,7 @@
       },
       "publication": {
         "countries": [],
-        "release_notes": "Initial public release with seller dealroom and template workflows, CRM context, tasks, notifications, meetings, transcripts, and file context."
+        "release_notes": "Adds direct dealroom and template page editing, native widgets and tasks, reusable library uploads, resource management, and template renaming. New permissions require reconnection."
       }
     }
   }

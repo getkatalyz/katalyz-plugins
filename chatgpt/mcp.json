@@ -32,14 +32,21 @@
               "meetings:transcript:read",
               "crm:read",
               "resources:read",
+              "resources:write",
+              "resources:delete",
               "dealrooms:create",
               "dealrooms:ai:create",
               "dealrooms:update",
+              "dealrooms:content:write",
               "dealrooms:invite",
               "crm:write",
+              "templates:read",
               "templates:create",
               "templates:ai:create",
-              "resources:upload"
+              "templates:content:write",
+              "resources:upload",
+              "resources:library:upload",
+              "browser:login"
             ]
           }
         }
