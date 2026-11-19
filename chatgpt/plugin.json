@@ -63,12 +63,6 @@
               "expected_behavior": "Find the room, report only its returned pages and current design settings, and make no write calls."
             },
             {
-              "description": "The review organization has a published template named MCP Review Published Template.",
-              "prompt": "List my dealrooms and find the MCP Review Published Template.",
-              "tools_triggered": "list_dealrooms, search_dealroom_templates",
-              "expected_behavior": "List the reviewer seller's visible rooms with IDs and find the published template by name with its ID."
-            },
-            {
               "description": "Approve dealrooms:create in the isolated review organization. Creating one room there is safe.",
               "prompt": "Create one standalone dealroom called MCP Review New Room using the MCP Review Published Template. Don't invite anyone.",
               "tools_triggered": "search_dealroom_templates, create_dealroom, get_dealroom_creation_status",
