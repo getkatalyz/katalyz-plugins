@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "katalyz",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Create and edit seller dealrooms, templates, pages, widgets, files, and tasks in Katalyz.",
   "author": {
     "name": "Katalyz"
@@ -93,7 +93,7 @@
       },
       "publication": {
         "countries": [],
-        "release_notes": "Adds the missing dealroom creation, briefing, collaboration, and seller worklist skills. All five Katalyz workflows are now packaged."
+        "release_notes": "Adds visual review guidance: ChatGPT checks pages in its built-in browser when authorized, with a Katalyz screenshot fallback."
       }
     }
   }
